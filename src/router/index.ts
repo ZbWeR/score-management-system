@@ -1,13 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+const APP_TITLE = import.meta.env.VITE_APP_TITLE
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: HomeView,
+      meta: {
+        title: APP_TITLE + ' - 主页'
+      }
     }
     // {
     //   path: '/about',
@@ -18,6 +23,16 @@ const router = createRouter({
     //   component: () => import('../views/AboutView.vue')
     // }
   ]
+})
+
+// 设置路由守卫
+router.beforeEach((to, from, next) => {
+  // 设置页面标题
+  if (to.meta.title) {
+    document.title = to.meta.title as string
+  }
+  
+  next()
 })
 
 export default router

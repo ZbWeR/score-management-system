@@ -3,6 +3,8 @@
     "Vue.volar",
     "Vue.vscode-typescript-vue-plugin",
     "dbaeumer.vscode-eslint",
-    "esbenp.prettier-vscode"
+    "esbenp.prettier-vscode",
+    "christian-kohler.path-intellisense",
+    "heybourn.headwind"
   ]
 }

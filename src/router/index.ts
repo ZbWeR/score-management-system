@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import errorRouter from './error.router'
 import HomeView from '../views/HomeView.vue'
 
 const APP_TITLE = import.meta.env.VITE_APP_TITLE
@@ -13,7 +14,8 @@ const router = createRouter({
       meta: {
         title: APP_TITLE + ' - 主页'
       }
-    }
+    },
+    errorRouter,
     // {
     //   path: '/about',
     //   name: 'about',
@@ -22,6 +24,11 @@ const router = createRouter({
     //   // which is lazy-loaded when the route is visited.
     //   component: () => import('../views/AboutView.vue')
     // }
+    // 不匹配的路由重定向到 404 页面
+    {
+      path: '/:pathMatch(.*)*',
+      redirect: '/404'
+    }
   ]
 })
 
@@ -31,7 +38,7 @@ router.beforeEach((to, from, next) => {
   if (to.meta.title) {
     document.title = to.meta.title as string
   }
-  
+
   next()
 })
 

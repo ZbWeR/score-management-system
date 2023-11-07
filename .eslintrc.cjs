@@ -17,6 +17,13 @@ module.exports = {
       'extends': [
         'plugin:cypress/recommended'
       ]
+    },
+    {
+      // 错误页面不需要遵循组件命名规则
+      files: ['src/views/errors/*.vue'],
+      rules: {
+        "vue/multi-word-component-names": "off"
+      }
     }
   ],
   parserOptions: {

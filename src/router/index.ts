@@ -27,6 +27,7 @@ const router = createRouter({
     // 不匹配的路由重定向到 404 页面
     {
       path: '/:pathMatch(.*)*',
+      name: 'not-match',
       redirect: '/404'
     }
   ]

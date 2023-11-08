@@ -4,6 +4,7 @@ import HomeView from '../views/HomeView.vue'
 
 const APP_TITLE = import.meta.env.VITE_APP_TITLE
 
+// 加载公共路由
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [

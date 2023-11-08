@@ -1,29 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import errorRouter from './error.router'
-import HomeView from '../views/HomeView.vue'
+import { errorRoutes } from './error.router'
+import { commonRoutes } from './common.router'
 
-const APP_TITLE = import.meta.env.VITE_APP_TITLE
-
+// 加载公共路由
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView,
-      meta: {
-        title: APP_TITLE + ' - 主页'
-      }
-    },
-    errorRouter,
-    // {
-    //   path: '/about',
-    //   name: 'about',
-    //   // route level code-splitting
-    //   // this generates a separate chunk (About.[hash].js) for this route
-    //   // which is lazy-loaded when the route is visited.
-    //   component: () => import('../views/AboutView.vue')
-    // }
+    ...commonRoutes,
+    ...errorRoutes,
+
     // 不匹配的路由重定向到 404 页面
     {
       path: '/:pathMatch(.*)*',

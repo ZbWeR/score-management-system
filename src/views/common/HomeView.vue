@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
-import { testFail, testSuccess } from '../request/API/test'
+import { testFail, testSuccess } from '@/request/API/test'
 
 onMounted(async () => {
   await testSuccess({ name: 'test', age: 18 }, { authRequire: true })

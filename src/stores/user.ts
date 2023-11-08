@@ -30,5 +30,6 @@ export const useUserStore = defineStore({
     logout() {
       this.$reset()
     }
-  }
+  },
+  persist: true
 })

@@ -6,26 +6,33 @@ enum Roles {
 }
 
 interface IUserStore {
-  islogin: boolean
+  isLogin: boolean
+  token: string | null
   role: Roles | null
-  userid: string | null
+  userId: string | null
   username: string | null
 }
 
 export const useUserStore = defineStore({
   id: 'user',
   state: (): IUserStore => ({
-    islogin: false,
+    isLogin: false,
+    token: null,
     role: null,
-    userid: null,
+    userId: null,
     username: null
   }),
   actions: {
-    login(uid: string, role: string, username?: string) {
-      this.islogin = true
-      this.userid = uid
+    // 设置用户信息
+    setInfo(uid: string, role: string, username?: string) {
+      this.userId = uid
       this.username = username || ''
       this.role = role as Roles
+    },
+    // 设置 token & 登录状态
+    setToken(token: string) {
+      this.isLogin = true
+      this.token = token
     },
     logout() {
       this.$reset()

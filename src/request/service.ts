@@ -1,13 +1,15 @@
 import Request from '.'
-import type { RequestInterceptors } from './type'
+import type { RequestInterceptors } from '../types/request/service'
+import router from '@/router'
+import { useUserStore } from '@/stores'
 
 const interceptors: RequestInterceptors = {
   // 请求拦截
   requestInterceptor: (config) => {
     const { options } = config as any
 
-    // 需要鉴权的接口添加 token
-    if (options?.authRequire) {
+    // 需要鉴权的接口添加 token,默认鉴权
+    if (options?.authRequire !== false) {
       config.headers.Authorization = 'Bearer ' + localStorage.getItem('token')
     }
     return config
@@ -46,7 +48,9 @@ function codeHandler(code: any) {
     case 400:
       return '请求错误'
     case 401:
-      // TODO: 清空 localStorage 跳转登录页
+      // 清空 localStorage 跳转登录页
+      useUserStore().logout()
+      router.push('/auth')
       return '未授权，请登录'
     case 403:
       return '拒绝访问'
@@ -86,8 +90,8 @@ async function callWithErrorHandler<T>(fn: () => Promise<T>) {
 
 // 创建 axios 实例
 const service = new Request({
-  // baseURL: 'https://mock.apifox.com/m1/3548574-0-default',
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: 'https://mock.apifox.com/m1/3548574-0-default',
+  // baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 10000,
   headers: {
     Accept: '*/*',

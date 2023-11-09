@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { errorRoutes } from './error.router'
 import { commonRoutes } from './common.router'
+import { useUserStore } from '@/stores'
 
 // 加载公共路由
 const router = createRouter({
@@ -23,6 +24,11 @@ router.beforeEach((to, from, next) => {
   // 设置页面标题
   if (to.meta.title) {
     document.title = to.meta.title as string
+  }
+  // 鉴权
+  if (to.meta.requireAuth) {
+    const user = useUserStore()
+    if (!user.isLogin) next({ name: 'auth' })
   }
 
   next()

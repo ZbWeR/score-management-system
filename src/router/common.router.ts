@@ -9,8 +9,14 @@ export const commonRoutes: RouteRecordRaw[] = [
     name: 'home',
     component: HomeView,
     meta: {
-      title: APP_TITLE + ' - 主页'
+      title: APP_TITLE + ' - 主页',
+      requireAuth: true
     }
+  },
+  {
+    path: '/auth',
+    name: 'auth',
+    component: () => import('../views/common/LoginView.vue')
   }
   // {
   //   path: '/about',

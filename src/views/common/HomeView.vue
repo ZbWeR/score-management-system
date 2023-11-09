@@ -1,16 +1,33 @@
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { testFail, testSuccess } from '@/request/API/test'
+import { ref } from 'vue'
+import { getScore } from '@/request/API/student'
 
-onMounted(async () => {
-  await testSuccess({ name: 'test', age: 18 }, { authRequire: true })
-  await testFail({ name: 'test', age: 18 }, { authRequire: true })
-})
+// 401 测试
+const examInfo = ref('')
+async function RequestScore(type: string = '') {
+  const res = await getScore(2018210000, type)
+  res && (examInfo.value = res.exam_info)
+}
 </script>
 
+<style scoped>
+.btn-info,
+.btn-error {
+  @apply hover:text-white !important;
+}
+</style>
+
 <template>
-  <h1 class="m-8 mb-5 text-3xl font-bold underline">Hello world!</h1>
-  <div class="p-2 px-6 ml-6 font-bold text-white bg-blue-500 rounded-lg w-fit">
-    添加了 Tailwind CSS
+  <div class="bg-zinc-50 w-screen h-screen flex items-center justify-center">
+    <div class="bg-white shadow-md p-4 rounded-md">
+      <h1 class="text-xl">Test</h1>
+      <div class="mt-4">
+        <button class="btn btn-info btn-outline" @click="RequestScore('')">查询分数</button>
+        <button class="btn btn-error btn-outline ml-4" @click="RequestScore('401')">
+          查询分数(返回值为 401)
+        </button>
+      </div>
+      <div class="mt-4 alert" v-if="examInfo">Exam Info: {{ examInfo }}</div>
+    </div>
   </div>
 </template>

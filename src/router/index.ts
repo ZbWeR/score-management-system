@@ -1,7 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { errorRoutes } from './error.router'
 import { commonRoutes } from './common.router'
+import { studentRoutes } from './student.router'
+import { teacherRoutes } from './teacher.router'
 import { useUserStore } from '@/stores'
+
+let isUserRoutesAdded = false
+const userRoutesMap = {
+  student: studentRoutes,
+  teacher: teacherRoutes
+}
 
 // 加载公共路由
 const router = createRouter({
@@ -28,7 +36,19 @@ router.beforeEach((to, from, next) => {
   // 鉴权
   if (to.meta.requireAuth) {
     const user = useUserStore()
-    if (!user.isLogin) next({ name: 'auth' })
+    if (!user.isLogin) return next({ name: 'auth' })
+  }
+
+  // 加载用户路由
+  if (!isUserRoutesAdded) {
+    const user = useUserStore()
+    if (user.isLogin && user.role) {
+      userRoutesMap[user.role].forEach((route) => {
+        router.addRoute('applayout', route)
+      })
+      isUserRoutesAdded = true
+      return next({ ...to, replace: true })
+    }
   }
 
   next()

@@ -14,7 +14,6 @@ export function userLogin(account: string, password: string, type: string = ''):
       account,
       password
     },
-    // Test: 密码错误接口
     params: {
       apifoxResponseId: type ? '349388107' : ''
     },

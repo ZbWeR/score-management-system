@@ -1,21 +1,16 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { getScore } from '@/request/API/student'
+import { messageManager } from '@/components/alert'
 
 // 401 测试
 const examInfo = ref('')
 async function RequestScore(type: string = '') {
+  messageManager.showMessage({ message: '查询学生成绩' })
   const res = await getScore(2018210000, type)
   res && (examInfo.value = res.exam_info)
 }
 </script>
-
-<style scoped>
-.btn-info,
-.btn-error {
-  @apply hover:text-white !important;
-}
-</style>
 
 <template>
   <div class="bg-zinc-50 w-screen h-screen flex items-center justify-center">
@@ -31,3 +26,10 @@ async function RequestScore(type: string = '') {
     </div>
   </div>
 </template>
+
+<style scoped>
+.btn-info,
+.btn-error {
+  @apply hover:text-white !important;
+}
+</style>

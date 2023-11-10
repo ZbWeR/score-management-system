@@ -2,6 +2,7 @@ import Request from '.'
 import type { RequestInterceptors } from '../types/request/service'
 import router from '@/router'
 import { useUserStore } from '@/stores'
+import { messageManager } from '@/components/alert'
 
 const interceptors: RequestInterceptors = {
   // 请求拦截
@@ -22,7 +23,10 @@ const interceptors: RequestInterceptors = {
     const { status_code, status_msg } = res.data
     if (status_code) {
       const { url } = res.config
-      // TODO:消息弹窗
+      messageManager.showMessage({
+        message: status_msg,
+        type: 'error'
+      })
       return Promise.reject({ url, message: status_msg })
     }
     return res.data
@@ -33,7 +37,10 @@ const interceptors: RequestInterceptors = {
     let errorMessage = ''
     if (!response) errorMessage = 'NetWork Error'
     else errorMessage = codeHandler(response.status)
-    // TODO:消息弹窗
+    messageManager.showMessage({
+      message: errorMessage,
+      type: 'error'
+    })
     return Promise.reject({ url: config.url, message: errorMessage })
   }
 }

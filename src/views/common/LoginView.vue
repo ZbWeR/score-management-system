@@ -1,9 +1,11 @@
 <script setup lang="ts">
+// TODO: 按钮防抖节流
 import { ref, computed } from 'vue'
 
 import { useUserStore } from '@/stores'
 import { userLogin } from '@/request/API/common'
 import router from '@/router'
+import { messageManager } from '@/components/alert'
 
 import IconUser from '@/components/icons/IconUser.vue'
 import IconPassword from '@/components/icons/IconPassword.vue'
@@ -13,14 +15,14 @@ const userStore = useUserStore()
 // 登录请求
 const account = ref('')
 const password = ref('')
-const RequestLogin = async (type = '') => {
-  if (!isValidate.value) {
-    return
-  }
+const RequestLogin = async () => {
+  if (!isValidate.value) return
+  const type = account.value === 'fail' ? 'fail' : ''
   const res = await userLogin(account.value, password.value, type)
   if (res) {
     userStore.setToken(res.token)
     userStore.setInfo(res.user_id, res.role)
+    messageManager.showMessage({ message: '登录成功!', type: 'success' })
     router.push({ name: 'home' })
   } else {
     console.log('登录失败')

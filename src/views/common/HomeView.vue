@@ -18,7 +18,7 @@ async function RequestScore(type: string = '') {
 </style>
 
 <template>
-  <div class="bg-zinc-50 w-screen h-screen flex items-center justify-center">
+  <div class="flex items-center justify-center h-full">
     <div class="bg-white shadow-md p-4 rounded-md">
       <h1 class="text-xl">Test</h1>
       <div class="mt-4">

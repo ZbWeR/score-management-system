@@ -16,7 +16,7 @@ const show = () => {
   if (isTransitioning.value) return
   visible.value = true
   if (timeoutId) clearTimeout(timeoutId)
-  timeoutId = setTimeout(() => {
+  timeoutId = window.setTimeout(() => {
     visible.value = false
     isTransitioning.value = true
   }, duration)

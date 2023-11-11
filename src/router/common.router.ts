@@ -16,7 +16,8 @@ export const commonRoutes: RouteRecordRaw[] = [
         name: 'home',
         component: HomeView,
         meta: {
-          title: '主页'
+          title: '主页',
+          toMenu: true
         }
       }
       // 动态路由添加至此

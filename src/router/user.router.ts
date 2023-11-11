@@ -6,13 +6,18 @@ const studentRoutes: RouteRecordRaw[] = [
     path: '/score',
     name: 'score',
     meta: {
-      title: '成绩查询'
+      title: '成绩查询',
+      toMenu: true
     },
     component: () => import('../views/student/ScoreDisplayView.vue')
   },
   {
     path: '/apply',
     name: 'apply',
+    meta: {
+      title: '申请查分',
+      toMenu: true
+    },
     component: () => import('../views/student/InquiryApplicationView.vue')
   }
 ]

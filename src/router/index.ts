@@ -44,6 +44,12 @@ router.beforeEach((to, from, next) => {
     return next({ name: 'auth' })
   }
 
+  // 已登录,访问登录页,跳转首页
+  if (to.name === 'auth' && user.isLogin) {
+    messageManager.showMessage({ message: '您已登录', type: 'error' })
+    return next({ name: 'home' })
+  }
+
   // 加载用户路由
   if (!isUserRoutesAdded) {
     if (user.isLogin && user.role) {

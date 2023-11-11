@@ -9,6 +9,7 @@ import { messageManager } from '@/components/alert'
 
 import IconUser from '@/components/icons/IconUser.vue'
 import IconPassword from '@/components/icons/IconPassword.vue'
+import { resetRouter } from '../../router/index'
 
 const userStore = useUserStore()
 

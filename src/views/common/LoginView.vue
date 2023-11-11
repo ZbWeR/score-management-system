@@ -20,10 +20,11 @@ const RequestLogin = async () => {
   const type = account.value === 'fail' ? 'fail' : ''
   const res = await userLogin(account.value, password.value, type)
   if (res) {
+    // 覆写 token 与用户信息
     userStore.setToken(res.token)
     userStore.setInfo(res.user_id, res.role)
     messageManager.showMessage({ message: '登录成功!', type: 'success' })
-    router.push({ name: 'home' })
+    router.push({ name: 'home', replace: true })
   } else {
     console.log('登录失败')
   }
@@ -101,6 +102,11 @@ const blurValidate = () => {
       >
         登 &nbsp; 录
       </button>
+      <!-- 调试说明 -->
+      <div class="border-t border-black/10 w-4/5 px-4 mt-5 pt-5 text-black/30">
+        <p>Student | 账号 stu 密码 stu</p>
+        <p>Teacher | 账号 admin 密码 admin</p>
+      </div>
     </div>
   </div>
 </template>

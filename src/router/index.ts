@@ -95,10 +95,7 @@ export default router
  * 清除动态路由
  */
 export function resetRouter() {
-  console.log('清除之前')
-  console.log(router.getRoutes())
   removeDynamicRouteFns.forEach((fn) => {
     fn()
   })
-  console.log(router.getRoutes())
 }

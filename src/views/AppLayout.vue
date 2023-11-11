@@ -16,8 +16,13 @@ const toggleView = (target: string, index: number) => {
   router.push({ path: target })
 }
 
+// !临时代码,用于调试
 // 获取用户信息
 const state = useUserStore()
+const logout = () => {
+  state.logout() // 清除用户信息
+  router.push({ path: '/auth' }) // 跳转登录页面
+}
 </script>
 
 <template>
@@ -27,8 +32,9 @@ const state = useUserStore()
     <div class="drawer-content bg-zinc-50 flex flex-col items-center justify-center">
       <!-- TODO: 移动端按钮样式调整 -->
       <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
-      <div class="bg-primary text-white p-4 rounded-md shadow-md mb-4">
+      <div class="bg-white p-4 rounded-md shadow-md mb-4">
         当前角色: {{ state.role }}
+        <button @click="logout" class="mt-4 btn block mx-auto">退出登录</button>
       </div>
       <router-view />
     </div>

@@ -2,8 +2,6 @@ import type { RouteRecordRaw } from 'vue-router'
 import AppLayout from '@/views/AppLayout.vue'
 import HomeView from '@/views/common/HomeView.vue'
 
-const APP_TITLE = import.meta.env.VITE_APP_TITLE
-
 export const commonRoutes: RouteRecordRaw[] = [
   {
     path: '/',
@@ -18,7 +16,8 @@ export const commonRoutes: RouteRecordRaw[] = [
         name: 'home',
         component: HomeView,
         meta: {
-          title: APP_TITLE + ' - 主页'
+          title: '主页',
+          toMenu: true
         }
       }
       // 动态路由添加至此

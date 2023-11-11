@@ -1,5 +1,4 @@
 import type { RouteRecordRaw } from 'vue-router'
-const APP_TITLE = import.meta.env.VITE_APP_TITLE
 
 // 学生路由
 const studentRoutes: RouteRecordRaw[] = [
@@ -7,13 +6,18 @@ const studentRoutes: RouteRecordRaw[] = [
     path: '/score',
     name: 'score',
     meta: {
-      title: `${APP_TITLE} - 我的成绩`
+      title: '成绩查询',
+      toMenu: true
     },
     component: () => import('../views/student/ScoreDisplayView.vue')
   },
   {
     path: '/apply',
     name: 'apply',
+    meta: {
+      title: '申请查分',
+      toMenu: true
+    },
     component: () => import('../views/student/InquiryApplicationView.vue')
   }
 ]

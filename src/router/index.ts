@@ -4,6 +4,8 @@ import { userRoutesMap } from './user.router'
 import { useUserStore } from '@/stores'
 import { messageManager } from '@/components/alert'
 
+const APP_TITLE = import.meta.env.VITE_APP_TITLE
+
 // 动态路由
 let isUserRoutesAdded = false
 
@@ -36,12 +38,19 @@ router.beforeEach((to, from, next) => {
 
   // 设置页面标题
   if (to.meta.title) {
-    document.title = to.meta.title as string
+    const title = (to.meta.title ? to.meta.title + ' - ' : '') + APP_TITLE
+    document.title = title
   }
 
   // 鉴权
   if (to.meta.requireAuth && !user.isLogin) {
     return next({ name: 'auth' })
+  }
+
+  // 已登录,访问登录页,跳转首页
+  if (to.name === 'auth' && user.isLogin) {
+    messageManager.showMessage({ message: '您已登录', type: 'error' })
+    return next({ name: 'home' })
   }
 
   // 加载用户路由

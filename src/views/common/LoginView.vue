@@ -24,8 +24,11 @@ const RequestLogin = async () => {
     // 覆写 token 与用户信息
     userStore.setToken(res.token)
     userStore.setInfo(res.user_id, res.role)
+    userStore.setRouteStatus(false)
+    // 清除路由
+    resetRouter()
     messageManager.showMessage({ message: '登录成功!', type: 'success' })
-    router.push({ name: 'home', replace: true })
+    router.push({ name: 'appLayout', replace: true })
   } else {
     console.log('登录失败')
   }

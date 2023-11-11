@@ -11,15 +11,6 @@ export const commonRoutes: RouteRecordRaw[] = [
       requireAuth: true
     },
     children: [
-      {
-        path: '',
-        name: 'home',
-        component: HomeView,
-        meta: {
-          title: '主页',
-          toMenu: true
-        }
-      }
       // 动态路由添加至此
     ]
   },

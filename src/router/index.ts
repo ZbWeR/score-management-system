@@ -4,6 +4,8 @@ import { userRoutesMap } from './user.router'
 import { useUserStore } from '@/stores'
 import { messageManager } from '@/components/alert'
 
+const APP_TITLE = import.meta.env.VITE_APP_TITLE
+
 // 动态路由
 let isUserRoutesAdded = false
 
@@ -36,7 +38,8 @@ router.beforeEach((to, from, next) => {
 
   // 设置页面标题
   if (to.meta.title) {
-    document.title = to.meta.title as string
+    const title = (to.meta.title ? to.meta.title + ' - ' : '') + APP_TITLE
+    document.title = title
   }
 
   // 鉴权

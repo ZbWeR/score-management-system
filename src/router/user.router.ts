@@ -5,8 +5,7 @@ const studentRoutes: RouteRecordRaw[] = [
   {
     path: '',
     name: 'home',
-    meta: { title: '我的成绩' },
-    component: () => import('../views/student/ScoreDisplayView.vue')
+    redirect: '/score'
   },
   {
     path: '/score',
@@ -32,8 +31,7 @@ const teacherRoutes: RouteRecordRaw[] = [
   {
     path: '',
     name: 'home',
-    meta: { title: '查分审批' },
-    component: () => import('../views/teacher/InquiryApprovalView.vue')
+    redirect: '/approval'
   },
   {
     path: '/approval',

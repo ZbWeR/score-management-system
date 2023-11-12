@@ -35,16 +35,16 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   // 获取用户状态
   const user = useUserStore()
-
   // 设置页面标题
   if (to.meta.title) {
-    const title = (to.meta.title ? to.meta.title + ' - ' : '') + APP_TITLE
+    const title = `${to.meta.title} - ${APP_TITLE}`
     document.title = title
   }
 
   // 鉴权
   if (to.meta.requireAuth && !user.isLogin) {
-    return next({ name: 'auth' })
+    messageManager.showMessage({ message: '请先登录', type: 'error' })
+    return next({ name: 'auth', replace: true })
   }
 
   // 加载用户路由
@@ -77,7 +77,7 @@ router.beforeEach((to, from, next) => {
       // 未登录跳转至登陆页
       if (!user.isLogin) {
         messageManager.showMessage({ message: '请先登录', type: 'error' })
-        return next({ name: 'auth' })
+        return next({ name: 'auth', replace: true })
       }
       // 已登录并且 not-match-redirect 说明角色不符
       else {

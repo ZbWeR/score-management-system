@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
-import { ref } from 'vue'
-import router from '@/router'
+import { ref, onMounted } from 'vue'
 import { useUserStore } from '../stores/user'
 
 // 根据用户类型获取路由列表
-const routeList = useRouter()
-  .getRoutes()
-  .filter((r) => r.meta?.toMenu)
+const router = useRouter()
+const routeList = router.getRoutes().filter((r) => r.meta?.toMenu)
+
+// 获取当前激活路由
 const activeIndex = ref(0)
+onMounted(() => {
+  const path = router.currentRoute.value.path
+  const index = routeList.findIndex((r) => r.path === path)
+  activeIndex.value = index
+})
 
 // 切换路由
 const toggleView = (target: string, index: number) => {
@@ -63,9 +68,11 @@ const logout = () => {
         </li>
       </ul>
       <!-- TODO:底部功能按钮 -->
-      <ul class="w-full bg-base-200 menu hidden">
-        <li><button class="navbar-btn">切换主题</button></li>
-        <li><button class="navbar-btn">退出登录</button></li>
+      <ul class="w-full bg-base-200 menu">
+        <div class="border-t-2 border-black/5 pt-4">
+          <li><button class="navbar-btn">切换主题</button></li>
+          <li><button class="navbar-btn">退出登录</button></li>
+        </div>
       </ul>
     </div>
   </div>

@@ -6,8 +6,8 @@ import { messageManager } from '@/components/alert'
 
 const APP_TITLE = import.meta.env.VITE_APP_TITLE
 
-// 动态路由
-let isUserRoutesAdded = false
+// 动态路由移除函数集合
+const removeDynamicRouteFns: (() => void)[] = []
 
 // 不匹配的路由跳转 404 页面
 const notMatchRoute: RouteRecordRaw = {
@@ -47,20 +47,15 @@ router.beforeEach((to, from, next) => {
     return next({ name: 'auth' })
   }
 
-  // 已登录,访问登录页,跳转首页
-  if (to.name === 'auth' && user.isLogin) {
-    messageManager.showMessage({ message: '您已登录', type: 'error' })
-    return next({ name: 'home' })
-  }
-
   // 加载用户路由
-  if (!isUserRoutesAdded) {
+  if (!user.isUserRoutesAdded) {
     if (user.isLogin && user.role) {
       router.removeRoute('not-match-redirect')
       userRoutesMap[user.role].forEach((route) => {
-        router.addRoute('appLayout', route)
+        const fn = router.addRoute('appLayout', route)
+        removeDynamicRouteFns.push(fn)
       })
-      isUserRoutesAdded = true
+      user.setRouteStatus(true)
       router.addRoute(notMatchRoute)
       return next({
         path: to.path,
@@ -95,3 +90,12 @@ router.beforeEach((to, from, next) => {
 })
 
 export default router
+
+/**
+ * 清除动态路由
+ */
+export function resetRouter() {
+  removeDynamicRouteFns.forEach((fn) => {
+    fn()
+  })
+}

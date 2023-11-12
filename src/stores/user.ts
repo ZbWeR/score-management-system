@@ -11,6 +11,8 @@ interface IUserStore {
   role: Roles | null
   userId: string | null
   username: string | null
+
+  isUserRoutesAdded: boolean // 是否已加载用户路由
 }
 
 export const useUserStore = defineStore({
@@ -20,7 +22,8 @@ export const useUserStore = defineStore({
     token: null,
     role: null,
     userId: null,
-    username: null
+    username: null,
+    isUserRoutesAdded: false
   }),
   actions: {
     // 设置用户信息
@@ -34,9 +37,15 @@ export const useUserStore = defineStore({
       this.isLogin = true
       this.token = token
     },
+    // 设置路由加载状态
+    setRouteStatus(status: boolean) {
+      this.isUserRoutesAdded = status
+    },
     logout() {
       this.$reset()
     }
   },
-  persist: true
+  persist: {
+    paths: ['isLogin', 'token', 'role', 'userId', 'username']
+  }
 })

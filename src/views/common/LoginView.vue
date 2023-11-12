@@ -1,5 +1,4 @@
 <script setup lang="ts">
-// TODO: 按钮防抖节流
 import { ref, computed } from 'vue'
 
 import { useUserStore } from '@/stores'
@@ -47,9 +46,9 @@ const blurValidate = () => {
     passwordInputClass.value = 'shadow-[0_0_0_2px_#f87171]'
   }
 }
-
-// TODO：记住账号功能
 </script>
+<!-- TODO: 记住账号 -->
+<!-- TODO: 按钮防抖节流 -->
 
 <template>
   <div class="w-screen h-screen flex justify-center items-center">

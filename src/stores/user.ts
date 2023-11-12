@@ -13,6 +13,7 @@ interface IUserStore {
   username: string | null
 
   isUserRoutesAdded: boolean // 是否已加载用户路由
+  theme: 'light' | 'dark'
 }
 
 export const useUserStore = defineStore({
@@ -23,7 +24,8 @@ export const useUserStore = defineStore({
     role: null,
     userId: null,
     username: null,
-    isUserRoutesAdded: false
+    isUserRoutesAdded: false,
+    theme: 'light'
   }),
   actions: {
     // 设置用户信息
@@ -41,11 +43,15 @@ export const useUserStore = defineStore({
     setRouteStatus(status: boolean) {
       this.isUserRoutesAdded = status
     },
+    // 设置主题
+    setTheme(theme: 'light' | 'dark') {
+      this.theme = theme
+    },
     logout() {
       this.$reset()
     }
   },
   persist: {
-    paths: ['isLogin', 'token', 'role', 'userId', 'username']
+    paths: ['isLogin', 'token', 'role', 'userId', 'username', 'theme']
   }
 })

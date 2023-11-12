@@ -1,6 +1,5 @@
 import type { RouteRecordRaw } from 'vue-router'
 import AppLayout from '@/views/AppLayout.vue'
-import HomeView from '@/views/common/HomeView.vue'
 
 export const commonRoutes: RouteRecordRaw[] = [
   {
@@ -17,6 +16,9 @@ export const commonRoutes: RouteRecordRaw[] = [
   {
     path: '/auth',
     name: 'auth',
+    meta: {
+      title: '登录'
+    },
     component: () => import('../views/common/LoginView.vue')
   }
 ]

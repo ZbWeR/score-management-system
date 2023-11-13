@@ -50,13 +50,10 @@ onMounted(getTheme)
     <input id="my-drawer-2" type="checkbox" class="drawer-toggle" />
     <!-- 页面主体内容 -->
     <div
-      class="drawer-content transition-all duration-200 dark:bg-slate-800 dark:text-white bg-zinc-50 flex flex-col items-center justify-center"
+      class="drawer-content transition-all duration-200 dark:bg-slate-800 dark:text-white bg-base-200 flex flex-col items-center justify-center"
     >
       <!-- TODO: 移动端按钮样式调整 -->
       <label for="my-drawer-2" class="btn btn-primary drawer-button lg:hidden">Open drawer</label>
-      <div class="dark:bg-sky-400 bg-white p-4 rounded-md shadow-md mb-4">
-        当前角色: {{ state.role }}
-      </div>
       <router-view />
     </div>
 
@@ -69,7 +66,7 @@ onMounted(getTheme)
         🐋成绩管理系统
       </h1>
       <ul
-        class="flex-1 dark:bg-slate-900/95 dark:text-white justify-between menu p-4 w-60 bg-base-200 text-base-content"
+        class="flex-1 dark:bg-slate-900/95 dark:text-white justify-between menu p-4 w-60 bg-white text-base-content"
       >
         <!-- 路由列表 -->
         <div>

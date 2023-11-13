@@ -79,14 +79,21 @@ onMounted(getTheme)
               class="custom-navbar-btn"
               :class="index === activeIndex ? 'custom-navbar-btn-active' : ''"
             >
+              <IconSvg :icon="route.meta?.icon" size="20" />
               {{ route.meta?.title }}
             </button>
           </div>
         </div>
         <!-- 底部功能按钮 -->
         <div class="border-t-2 border-black/5 pt-4">
-          <button class="custom-navbar-btn" @click="toggleTheme">切换主题</button>
-          <button class="custom-navbar-btn" @click="logout">退出登录</button>
+          <button class="custom-navbar-btn" @click="toggleTheme">
+            <IconSvg :icon="state.theme === 'dark' ? 'light' : 'dark'" size="20" />
+            切换主题
+          </button>
+          <button class="custom-navbar-btn" @click="logout">
+            <IconSvg icon="exit" size="20" />
+            退出登录
+          </button>
         </div>
       </ul>
     </div>
@@ -95,7 +102,7 @@ onMounted(getTheme)
 
 <style scoped>
 .custom-navbar-btn {
-  @apply px-4 py-2 hover:bg-[hsl(215,28%,17%)]/10 rounded-lg transition-all cursor-pointer duration-200 active:scale-95 text-center text-base block w-full ease-out dark:hover:bg-slate-400/20 dark:text-slate-400 dark:hover:text-white;
+  @apply px-4 py-2 hover:bg-[hsl(215,28%,17%)]/10 rounded-lg transition-all cursor-pointer duration-200 active:scale-95 text-center text-base  w-full ease-out dark:hover:bg-slate-400/20 dark:text-slate-400 dark:hover:text-white flex items-center justify-center gap-2;
 }
 .custom-navbar-btn-active {
   @apply pointer-events-none hover:bg-p-2 hover:text-p-t bg-p-2 text-p-t dark:bg-indigo-200/40 dark:text-white;

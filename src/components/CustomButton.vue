@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface ButtonOption {
-  type: 'primary' | 'error'
+  type?: 'primary' | 'error' | 'info'
 }
 const { type } = defineProps<ButtonOption>()
 
@@ -26,5 +26,8 @@ const handleClick = (e: Event) => {
 }
 .error {
   @apply bg-red-500 text-white hover:bg-red-600 dark:text-white dark:hover:bg-red-700 dark:bg-red-800;
+}
+.info {
+  @apply bg-black/30 text-white hover:bg-black/40 dark:bg-white/20 dark:hover:bg-white/30;
 }
 </style>

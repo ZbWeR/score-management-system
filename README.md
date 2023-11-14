@@ -1,68 +1,26 @@
-# score-management-system
+<h1 align="center">Score Management System</h1>
 
-This template should help get you started developing with Vue 3 in Vite.
+<div align="center">
+  <p>🚀 学生成绩管理系统 ⚙️</p>
+</div>
 
-## Recommended IDE Setup
+该项目仍在施工中...🚧(咕咕咕)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+技术栈: Vue3 / Vite / TypeScript / Tailwind CSS / Vue-Router / Pinia / Vitest
 
-## Type Support for `.vue` Imports in TS
+工程化: ESLint / Prettier / Husky / Lint-Staged
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+## ✨ Features
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+- **动态路由**: 通过后端返回的角色信息动态生成路由与菜单.
+- **暗黑模式**: 通过 Tailwind CSS 的 `dark` 类名实现暗黑模式.
+- **二次封装 Axios**: 借助请求拦截器实现自动携带 token 并使用响应拦截器统一处理错误.
+- **封装消息提示组件**: 自定义消息提示组件并全局挂载,可通过函数直接调用.
 
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+---
 
-## Customize configuration
+TODO:
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+- [ ] 教师端成绩管理遮罩层
+- [ ] 后端接口联调
+- [ ] 单元测试与集成测试

@@ -1,8 +1,14 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 interface ButtonOption {
   type?: 'primary' | 'error' | 'info'
+  size?: 'small'
 }
-const { type } = defineProps<ButtonOption>()
+const { type, size } = defineProps<ButtonOption>()
+
+const optionClasses = computed(() => {
+  return [type, size]
+})
 
 const emit = defineEmits(['click'])
 const handleClick = (e: Event) => {
@@ -13,7 +19,7 @@ const handleClick = (e: Event) => {
 <template>
   <button
     class="px-4 py-2 hover:bg-[hsl(215,28%,17%)]/10 rounded-lg transition-all cursor-pointer duration-200 active:scale-95 text-center text-base ease-out dark:hover:bg-slate-400/20 dark:text-slate-400 dark:hover:text-white flex items-center justify-center gap-2"
-    :class="type"
+    :class="optionClasses"
     @click="handleClick"
   >
     <slot></slot>
@@ -29,5 +35,8 @@ const handleClick = (e: Event) => {
 }
 .info {
   @apply bg-black/30 text-white hover:bg-black/40 dark:bg-white/20 dark:hover:bg-white/30;
+}
+.small {
+  @apply p-2 text-sm;
 }
 </style>

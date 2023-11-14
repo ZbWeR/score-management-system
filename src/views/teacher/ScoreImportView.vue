@@ -25,7 +25,7 @@ import CustomButton from '@/components/CustomButton.vue'
         <!-- 考试 -->
         <div>
           <h1 class="font-bold text-sm">考试</h1>
-          <select class="select dark:bg-slate-800 mt-2 select-bordered w-full max-w-xs">
+          <select class="select dark:bg-slate-800 mt-2 select-bordered w-full">
             <option selected>2023 年八省联考</option>
             <option>2023 泉州三检</option>
             <option>2023 泉州二检</option>
@@ -36,7 +36,7 @@ import CustomButton from '@/components/CustomButton.vue'
         <!-- 科目 -->
         <div class="mt-4">
           <h1 class="font-bold text-sm">科目</h1>
-          <select class="select dark:bg-slate-800 mt-2 select-bordered w-full max-w-xs">
+          <select class="select dark:bg-slate-800 mt-2 select-bordered w-full">
             <option selected>语文</option>
             <option>数学</option>
             <option>英语</option>
@@ -51,7 +51,7 @@ import CustomButton from '@/components/CustomButton.vue'
           <input
             type="text"
             placeholder="请输入 13 位学号"
-            class="mt-2 input dark:bg-slate-800 input-bordered w-full max-w-xs"
+            class="mt-2 input dark:bg-slate-800 input-bordered w-full"
           />
         </div>
 
@@ -61,7 +61,7 @@ import CustomButton from '@/components/CustomButton.vue'
           <input
             type="text"
             placeholder="请输入成绩"
-            class="mt-2 input dark:bg-slate-800 input-bordered w-full max-w-xs"
+            class="mt-2 input dark:bg-slate-800 input-bordered w-full"
           />
           <label for="absent" class="flex w-full items-center justify-end mt-2">
             <input
